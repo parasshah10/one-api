@@ -146,7 +146,7 @@ const OtherSetting = () => {
           <Form.Group widths='equal'>
             <Form.TextArea
               label='Home Page Content'
-              placeholder='Enter the content of the homepage here, support Markdown & HTML code, after setting, the status information of the homepage will no longer be displayed. If a link is entered, it will be used as the iframe's src attribute, which allows you to set any webpage As the homepage.'
+              placeholder='Enter the content of the homepage here, support Markdown & HTML code, after setting, the status information of the homepage will no longer be displayed. If a link is entered, it will be used as the iframes src attribute, which allows you to set any webpage As the homepage.'
               value={inputs.HomePageContent}
               name='HomePageContent'
               onChange={handleInputChange}
