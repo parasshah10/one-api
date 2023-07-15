@@ -146,7 +146,7 @@ const RedemptionsTable = () => {
           icon='search'
           fluid
           iconPosition='left'
-          placeholder='Search for the redemption code's ID and name ...'
+          placeholder='Search for the redemption code ID and name ...'
           value={searchKeyword}
           loading={searching}
           onChange={handleKeywordChange}
