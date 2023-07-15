@@ -97,15 +97,15 @@ const EditChannel = () => {
 
   const submit = async () => {
     if (!isEdit && (inputs.name === '' || inputs.key === '')) {
-      showInfo('请填写渠道名称和渠道密钥！');
+      showInfo('Please fill in the channel name and channel key!');
       return;
     }
     if (inputs.models.length === 0) {
-      showInfo('请至少选择一个模型！');
+      showInfo('Please select at least one model!');
       return;
     }
     if (inputs.model_mapping !== '' && !verifyJSON(inputs.model_mapping)) {
-      showInfo('模型映射必须是合法的 JSON 格式！');
+      showInfo('Model mappings must be in valid JSON format!');
       return;
     }
     let localInputs = inputs;
@@ -126,9 +126,9 @@ const EditChannel = () => {
     const { success, message } = res.data;
     if (success) {
       if (isEdit) {
-        showSuccess('渠道更新成功！');
+        showSuccess('Channel updated successfully!');
       } else {
-        showSuccess('渠道创建成功！');
+        showSuccess('Channel created successfully!');
         setInputs(originInputs);
       }
     } else {
@@ -139,11 +139,11 @@ const EditChannel = () => {
   return (
     <>
       <Segment loading={loading}>
-        <Header as='h3'>{isEdit ? '更新渠道信息' : '创建新的渠道'}</Header>
+        <Header as='h3'>{isEdit ? 'Update channel information' : 'Create New Channel'}</Header>
         <Form autoComplete='new-password'>
           <Form.Field>
             <Form.Select
-              label='类型'
+              label='Type'
               name='type'
               required
               options={CHANNEL_OPTIONS}
@@ -163,7 +163,7 @@ const EditChannel = () => {
                   <Form.Input
                     label='AZURE_OPENAI_ENDPOINT'
                     name='base_url'
-                    placeholder={'请输入 AZURE_OPENAI_ENDPOINT，例如：https://docs-test-001.openai.azure.com'}
+                    placeholder={'please enter AZURE_OPENAI_ENDPOINT，例如：https://docs-test-001.openai.azure.com'}
                     onChange={handleInputChange}
                     value={inputs.base_url}
                     autoComplete='new-password'
@@ -171,9 +171,9 @@ const EditChannel = () => {
                 </Form.Field>
                 <Form.Field>
                   <Form.Input
-                    label='默认 API 版本'
+                    label='Default API version'
                     name='other'
-                    placeholder={'请输入默认 API 版本，例如：2023-03-15-preview，该配置可以被实际的请求查询参数所覆盖'}
+                    placeholder={'Please enter the default API version, for example: 2023-03-15-preview, this configuration can be overridden by actual request query parameters'}
                     onChange={handleInputChange}
                     value={inputs.other}
                     autoComplete='new-password'
@@ -188,7 +188,7 @@ const EditChannel = () => {
                 <Form.Input
                   label='Base URL'
                   name='base_url'
-                  placeholder={'请输入自定义渠道的 Base URL，例如：https://openai.justsong.cn'}
+                  placeholder={'Please enter the Base URL of the custom channel, for example: https://openai.justsong.cn'}
                   onChange={handleInputChange}
                   value={inputs.base_url}
                   autoComplete='new-password'
@@ -200,9 +200,9 @@ const EditChannel = () => {
             inputs.type !== 3 && inputs.type !== 8 && (
               <Form.Field>
                 <Form.Input
-                  label='镜像'
+                  label='mirror image'
                   name='base_url'
-                  placeholder={'此项可选，输入镜像站地址，格式为：https://domain.com'}
+                  placeholder={'This option is optional, enter the address of the mirror site in the format: https://domain.com'}
                   onChange={handleInputChange}
                   value={inputs.base_url}
                   autoComplete='new-password'
@@ -212,10 +212,10 @@ const EditChannel = () => {
           }
           <Form.Field>
             <Form.Input
-              label='名称'
+              label='Name'
               required
               name='name'
-              placeholder={'请输入名称'}
+              placeholder={'please enter a name'}
               onChange={handleInputChange}
               value={inputs.name}
               autoComplete='new-password'
@@ -223,15 +223,15 @@ const EditChannel = () => {
           </Form.Field>
           <Form.Field>
             <Form.Dropdown
-              label='分组'
-              placeholder={'请选择分组'}
+              label='Group'
+              placeholder={'Please select a group'}
               name='groups'
               required
               fluid
               multiple
               selection
               allowAdditions
-              additionLabel={'请在系统设置页面编辑分组倍率以添加新的分组：'}
+              additionLabel={'Please edit the group override on the system settings page to add a new group:'}
               onChange={handleInputChange}
               value={inputs.groups}
               autoComplete='new-password'
@@ -240,8 +240,8 @@ const EditChannel = () => {
           </Form.Field>
           <Form.Field>
             <Form.Dropdown
-              label='模型'
-              placeholder={'请选择该通道所支持的模型'}
+              label='Model'
+              placeholder={'Please select the model supported by this channel'}
               name='models'
               required
               fluid
@@ -256,18 +256,18 @@ const EditChannel = () => {
           <div style={{ lineHeight: '40px', marginBottom: '12px' }}>
             <Button type={'button'} onClick={() => {
               handleInputChange(null, { name: 'models', value: basicModels });
-            }}>填入基础模型</Button>
+            }}>Fill in the base model</Button>
             <Button type={'button'} onClick={() => {
               handleInputChange(null, { name: 'models', value: fullModels });
-            }}>填入所有模型</Button>
+            }}>Fill in all models</Button>
             <Button type={'button'} onClick={() => {
               handleInputChange(null, { name: 'models', value: [] });
-            }}>清除所有模型</Button>
+            }}>Clear All Models</Button>
           </div>
           <Form.Field>
             <Form.TextArea
-              label='模型映射'
-              placeholder={`此项可选，为一个 JSON 文本，键为用户请求的模型名称，值为要替换的模型名称，例如：\n${JSON.stringify(MODEL_MAPPING_EXAMPLE, null, 2)}`}
+              label='Model Mapping'
+              placeholder={`This is optional, it is a JSON text, the key is the name of the model requested by the user, and the value is the name of the model to be replaced, for example：\n${JSON.stringify(MODEL_MAPPING_EXAMPLE, null, 2)}`}
               name='model_mapping'
               onChange={handleInputChange}
               value={inputs.model_mapping}
@@ -278,10 +278,10 @@ const EditChannel = () => {
           {
             batch ? <Form.Field>
               <Form.TextArea
-                label='密钥'
+                label='Key'
                 name='key'
                 required
-                placeholder={'请输入密钥，一行一个'}
+                placeholder={'Please enter the key, one per line'}
                 onChange={handleInputChange}
                 value={inputs.key}
                 style={{ minHeight: 150, fontFamily: 'JetBrains Mono, Consolas' }}
@@ -289,10 +289,10 @@ const EditChannel = () => {
               />
             </Form.Field> : <Form.Field>
               <Form.Input
-                label='密钥'
+                label='Key'
                 name='key'
                 required
-                placeholder={'请输入密钥'}
+                placeholder={'please enter key'}
                 onChange={handleInputChange}
                 value={inputs.key}
                 autoComplete='new-password'
@@ -303,13 +303,13 @@ const EditChannel = () => {
             !isEdit && (
               <Form.Checkbox
                 checked={batch}
-                label='批量创建'
+                label='Batch creation'
                 name='batch'
                 onChange={() => setBatch(!batch)}
               />
             )
           }
-          <Button positive onClick={submit}>提交</Button>
+          <Button positive onClick={submit}>Submit</Button>
         </Form>
       </Segment>
     </>
