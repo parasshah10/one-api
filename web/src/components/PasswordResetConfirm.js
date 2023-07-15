@@ -33,7 +33,7 @@ const PasswordResetConfirm = () => {
     if (success) {
       let password = res.data.data;
       await copy(password);
-      showNotice(`密码已重置并已复制到剪贴板：${password}`);
+      showNotice(`Password reset and copied to clipboard：${password}`);
     } else {
       showError(message);
     }
@@ -44,7 +44,7 @@ const PasswordResetConfirm = () => {
     <Grid textAlign='center' style={{ marginTop: '48px' }}>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='' textAlign='center'>
-          <Image src='/logo.png' /> 密码重置确认
+          <Image src='/logo.png' /> Password reset confirmation
         </Header>
         <Form size='large'>
           <Segment>
@@ -52,7 +52,7 @@ const PasswordResetConfirm = () => {
               fluid
               icon='mail'
               iconPosition='left'
-              placeholder='邮箱地址'
+              placeholder='Email Address'
               name='email'
               value={email}
               readOnly
@@ -64,7 +64,7 @@ const PasswordResetConfirm = () => {
               onClick={handleSubmit}
               loading={loading}
             >
-              提交
+              Submit
             </Button>
           </Segment>
         </Form>
