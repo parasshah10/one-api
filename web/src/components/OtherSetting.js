@@ -93,7 +93,7 @@ const OtherSetting = () => {
     );
     const { tag_name, body } = res.data;
     if (tag_name === process.env.REACT_APP_VERSION) {
-      showSuccess(`已是最新版本：${tag_name}`);
+      showSuccess(`Already the latest version：${tag_name}`);
     } else {
       setUpdateData({
         tag_name: tag_name,
@@ -107,75 +107,75 @@ const OtherSetting = () => {
     <Grid columns={1}>
       <Grid.Column>
         <Form loading={loading}>
-          <Header as='h3'>通用设置</Header>
-          <Form.Button onClick={checkUpdate}>检查更新</Form.Button>
+          <Header as='h3'>General Settings</Header>
+          <Form.Button onClick={checkUpdate}>Check For updates</Form.Button>
           <Form.Group widths='equal'>
             <Form.TextArea
-              label='公告'
-              placeholder='在此输入新的公告内容'
+              label='Announcement'
+              placeholder='Enter new announcement content here'
               value={inputs.Notice}
               name='Notice'
               onChange={handleInputChange}
               style={{ minHeight: 150, fontFamily: 'JetBrains Mono, Consolas' }}
             />
           </Form.Group>
-          <Form.Button onClick={submitNotice}>保存公告</Form.Button>
+          <Form.Button onClick={submitNotice}>save bulletin</Form.Button>
           <Divider />
-          <Header as='h3'>个性化设置</Header>
+          <Header as='h3'>Personalized Settings</Header>
           <Form.Group widths='equal'>
             <Form.Input
-              label='系统名称'
-              placeholder='在此输入系统名称'
+              label='System Name'
+              placeholder='Enter System Name Here'
               value={inputs.SystemName}
               name='SystemName'
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Form.Button onClick={submitSystemName}>设置系统名称</Form.Button>
+          <Form.Button onClick={submitSystemName}>Set System Name</Form.Button>
           <Form.Group widths='equal'>
             <Form.Input
-              label='Logo 图片地址'
-              placeholder='在此输入 Logo 图片地址'
+              label='Logo image address'
+              placeholder='Enter the URL of the Logo image here'
               value={inputs.Logo}
               name='Logo'
               type='url'
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Form.Button onClick={submitLogo}>设置 Logo</Form.Button>
+          <Form.Button onClick={submitLogo}>Set Logo</Form.Button>
           <Form.Group widths='equal'>
             <Form.TextArea
-              label='首页内容'
-              placeholder='在此输入首页内容，支持 Markdown & HTML 代码，设置后首页的状态信息将不再显示。如果输入的是一个链接，则会使用该链接作为 iframe 的 src 属性，这允许你设置任意网页作为首页。'
+              label='Home Page Content'
+              placeholder='Enter the content of the homepage here, support Markdown & HTML code, after setting, the status information of the homepage will no longer be displayed. If a link is entered, it will be used as the iframe's src attribute, which allows you to set any webpage As the homepage.'
               value={inputs.HomePageContent}
               name='HomePageContent'
               onChange={handleInputChange}
               style={{ minHeight: 150, fontFamily: 'JetBrains Mono, Consolas' }}
             />
           </Form.Group>
-          <Form.Button onClick={() => submitOption('HomePageContent')}>保存首页内容</Form.Button>
+          <Form.Button onClick={() => submitOption('HomePageContent')}>Save Home Page Content</Form.Button>
           <Form.Group widths='equal'>
             <Form.TextArea
-              label='关于'
-              placeholder='在此输入新的关于内容，支持 Markdown & HTML 代码。如果输入的是一个链接，则会使用该链接作为 iframe 的 src 属性，这允许你设置任意网页作为关于页面。'
+              label='About'
+              placeholder='Enter new about content here, support Markdown & HTML code. If the input is a link, it will be used as the src attribute of the iframe, which allows you to set any webpage as the about page.'
               value={inputs.About}
               name='About'
               onChange={handleInputChange}
               style={{ minHeight: 150, fontFamily: 'JetBrains Mono, Consolas' }}
             />
           </Form.Group>
-          <Form.Button onClick={submitAbout}>保存关于</Form.Button>
-          <Message>移除 One API 的版权标识必须首先获得授权，项目维护需要花费大量精力，如果本项目对你有意义，请主动支持本项目。</Message>
+          <Form.Button onClick={submitAbout}>Save About</Form.Button>
+          <Message>Removing the copyright logo of One API must be authorized first, and project maintenance requires a lot of effort.</Message>
           <Form.Group widths='equal'>
             <Form.Input
-              label='页脚'
-              placeholder='在此输入新的页脚，留空则使用默认页脚，支持 HTML 代码'
+              label='Footer'
+              placeholder='Enter a new footer here, leave it blank to use the default footer, HTML code is supported'
               value={inputs.Footer}
               name='Footer'
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Form.Button onClick={submitFooter}>设置页脚</Form.Button>
+          <Form.Button onClick={submitFooter}>Set Footer</Form.Button>
         </Form>
       </Grid.Column>
       <Modal
@@ -183,7 +183,7 @@ const OtherSetting = () => {
         onOpen={() => setShowUpdateModal(true)}
         open={showUpdateModal}
       >
-        <Modal.Header>新版本：{updateData.tag_name}</Modal.Header>
+        <Modal.Header>New Version：{updateData.tag_name}</Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <div dangerouslySetInnerHTML={{ __html: updateData.content }}></div>
@@ -192,7 +192,7 @@ const OtherSetting = () => {
         <Modal.Actions>
           <Button onClick={() => setShowUpdateModal(false)}>关闭</Button>
           <Button
-            content='详情'
+            content='Details'
             onClick={() => {
               setShowUpdateModal(false);
               openGitHubRelease();
