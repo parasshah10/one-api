@@ -67,7 +67,7 @@ const EditToken = () => {
     if (localInputs.expired_time !== -1) {
       let time = Date.parse(localInputs.expired_time);
       if (isNaN(time)) {
-        showError('过期时间格式错误！');
+        showError('Expiration time format error!');
         return;
       }
       localInputs.expired_time = Math.ceil(time / 1000);
@@ -81,9 +81,9 @@ const EditToken = () => {
     const { success, message } = res.data;
     if (success) {
       if (isEdit) {
-        showSuccess('令牌更新成功！');
+        showSuccess('Token updated successfully!');
       } else {
-        showSuccess('令牌创建成功！');
+        showSuccess('Token created successfully!');
         setInputs(originInputs);
       }
     } else {
@@ -94,13 +94,13 @@ const EditToken = () => {
   return (
     <>
       <Segment loading={loading}>
-        <Header as='h3'>{isEdit ? '更新令牌信息' : '创建新的令牌'}</Header>
+        <Header as='h3'>{isEdit ? 'Update token information' : 'Create New Token'}</Header>
         <Form autoComplete='new-password'>
           <Form.Field>
             <Form.Input
-              label='名称'
+              label='Name'
               name='name'
-              placeholder={'请输入名称'}
+              placeholder={'please enter a name'}
               onChange={handleInputChange}
               value={name}
               autoComplete='new-password'
@@ -109,9 +109,9 @@ const EditToken = () => {
           </Form.Field>
           <Form.Field>
             <Form.Input
-              label='过期时间'
+              label='Expiration'
               name='expired_time'
-              placeholder={'请输入过期时间，格式为 yyyy-MM-dd HH:mm:ss，-1 表示无限制'}
+              placeholder={'Please enter the expiration time in the format of yyyy-MM-dd HH:mm:ss, -1 means unlimited'}
               onChange={handleInputChange}
               value={expired_time}
               autoComplete='new-password'
@@ -121,26 +121,26 @@ const EditToken = () => {
           <div style={{ lineHeight: '40px' }}>
             <Button type={'button'} onClick={() => {
               setExpiredTime(0, 0, 0, 0);
-            }}>永不过期</Button>
+            }}>Never Expires</Button>
             <Button type={'button'} onClick={() => {
               setExpiredTime(1, 0, 0, 0);
-            }}>一个月后过期</Button>
+            }}>Expires In One Month</Button>
             <Button type={'button'} onClick={() => {
               setExpiredTime(0, 1, 0, 0);
-            }}>一天后过期</Button>
+            }}>Expires In One Day</Button>
             <Button type={'button'} onClick={() => {
               setExpiredTime(0, 0, 1, 0);
-            }}>一小时后过期</Button>
+            }}>Expires In One Hour</Button>
             <Button type={'button'} onClick={() => {
               setExpiredTime(0, 0, 0, 1);
-            }}>一分钟后过期</Button>
+            }}>Expires In One Minute</Button>
           </div>
-          <Message>注意，令牌的额度仅用于限制令牌本身的最大额度使用量，实际的使用受到账户的剩余额度限制。</Message>
+          <Message>Note that the amount of the token is only used to limit the maximum usage of the token itself, and the actual usage is limited by the remaining amount of the account.</Message>
           <Form.Field>
             <Form.Input
-              label={`额度${renderQuotaWithPrompt(remain_quota)}`}
+              label={`Quota${renderQuotaWithPrompt(remain_quota)}`}
               name='remain_quota'
-              placeholder={'请输入额度'}
+              placeholder={'Please enter the amount'}
               onChange={handleInputChange}
               value={remain_quota}
               autoComplete='new-password'
@@ -150,8 +150,8 @@ const EditToken = () => {
           </Form.Field>
           <Button type={'button'} onClick={() => {
             setUnlimitedQuota();
-          }}>{unlimited_quota ? '取消无限额度' : '设置为无限额度'}</Button>
-          <Button positive onClick={submit}>提交</Button>
+          }}>{unlimited_quota ? 'Unlimited' : 'Set to Unlimited'}</Button>
+          <Button positive onClick={submit}>Submit</Button>
         </Form>
       </Segment>
     </>
